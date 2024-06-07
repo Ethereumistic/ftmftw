@@ -9,8 +9,21 @@ import { urlForImage } from "@/lib/sanity/image";
 import cx from "clsx";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { myLoader } from "@/utils/all";
+import ThemeSwitch from "./themeSwitch";
+import { useState } from "react";
 
 export default function Navbar(props) {
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleMouseEnter = (index) => {
+    setActiveIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveIndex(null);
+  };
+
   const leftmenu = [
     {
       label: "Home",
@@ -28,7 +41,19 @@ export default function Navbar(props) {
 
   const rightmenu = [
     {
-      label: "Archive",
+      label: "Home",
+      href: "/"
+    },
+    {
+      label: "About",
+      href: "/about"
+    },
+    {
+      label: "Contact",
+      href: "/contact"
+    },
+    {
+      label: "Solutions",
       href: "/archive"
     },
     {
@@ -37,11 +62,42 @@ export default function Navbar(props) {
       external: true,
       badge: "new"
     },
+
+  ];
+
+  const menu = [
     {
-      label: "Download",
-      href: "https://web3templates.com/templates/stablo-minimal-blog-website-template",
-      external: true
-    }
+      label: 'Home',
+      href: '/',
+    },
+    {
+      label: 'About',
+      href: '/about',
+      title: 'Get to know...',
+      children: [
+        { label: 'Us', href: '/about/us' },
+        { label: 'Bitcoin', href: '/about/bitcoin' },
+      ],
+    },
+    
+    {
+      label: 'Solutions',
+      href: '#',
+      title:'Products',
+      children: [
+        { label: 'Bitcoin for the individual', href: '#' },
+        { label: 'Submenu 2-2', href: '#' },
+      ],
+      subtitle: 'Programs',
+      kids: [
+        { label: 'Become a Bitcoin Business', href: '#' },
+        { label: 'Submenu 2-2', href: '#' },
+      ]
+    },
+    {
+      label: 'Menu 3',
+      href: '#',
+    },
   ];
 
   const mobilemenu = [...leftmenu, ...rightmenu];
@@ -52,8 +108,12 @@ export default function Navbar(props) {
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="flex flex-wrap justify-between md:flex-nowrap md:gap-10">
-                <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
+              <div className="-translate-x-1 -translate-y-4 
+                              flex flex-wrap justify-between md:flex-nowrap md:gap-10 dark:bg-slate-700 bg-slate-400  dark:text-slate-800 
+                              dark:bg-[radial-gradient(#4d4d4d_1px,transparent_1px)] 
+                              bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]  rounded-full h-20">
+                
+                {/* <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
                   {leftmenu.map((item, index) => (
                     <Fragment key={`${item.label}${index}`}>
                       {item.children && item.children.length > 0 ? (
@@ -66,7 +126,7 @@ export default function Navbar(props) {
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-borange dark:text-gray-400"
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
                           {item.label}
@@ -74,9 +134,9 @@ export default function Navbar(props) {
                       )}
                     </Fragment>
                   ))}
-                </div>
-                <div className="flex w-full items-center justify-between md:w-auto">
-                  <Link href="/" className="w-28 dark:hidden">
+                </div> */}
+                <div className="ml-12 flex w-full items-center justify-between md:w-auto opacity-100">
+                  <Link href="/" className="w-28 dark:hidden hover:scale-110 hover:rotate-[-21deg] transition duration-300  ">
                     {props.logo ? (
                       <Image
                         {...urlForImage(props.logo)}
@@ -86,11 +146,11 @@ export default function Navbar(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        FTMFTW
                       </span>
                     )}
                   </Link>
-                  <Link href="/" className="hidden w-28 dark:block">
+                  <Link href="/" className="hidden w-28 dark:block hover:scale-110 hover:rotate-[-21deg] transition duration-300">
                     {props.logoalt ? (
                       <Image
                         {...urlForImage(props.logoalt)}
@@ -100,13 +160,13 @@ export default function Navbar(props) {
                       />
                     ) : (
                       <span className="block text-center">
-                        Stablo
+                        FTMFTW
                       </span>
                     )}
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="ml-auto rounded-md px-2 py-1 text-gray-500 focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden ">
+                    className="ml-auto rounded-md px-2 py-1 text-gray-800 font-bold focus:text-blue-500 focus:outline-none dark:text-gray-300 md:hidden ">
                     <svg
                       className="h-6 w-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +188,7 @@ export default function Navbar(props) {
                   </Disclosure.Button>
                 </div>
 
-                <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
+                {/* <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
                   {rightmenu.map((item, index) => (
                     <Fragment key={`${item.label}${index}`}>
                       {item.children && item.children.length > 0 ? (
@@ -141,7 +201,7 @@ export default function Navbar(props) {
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+                          className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-red-500 dark:text-gray-400"
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
                           <span> {item.label}</span>
@@ -154,8 +214,50 @@ export default function Navbar(props) {
                       )}
                     </Fragment>
                   ))}
+                  <ThemeSwitch />
+                  </div> */}
+
+<div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row ">
+      {menu.map((item, index) => (
+        <div
+          key={`${item.label}${index}`}
+          onMouseEnter={() => handleMouseEnter(index)}
+          onMouseLeave={handleMouseLeave}
+          className="relative"
+        >
+          {item.children && item.children.length > 0 ? (
+            <NavMenu
+              menu={item}
+              key={`${item.label}${index}`}
+              items={item.children}
+              title={item.title}
+              subtitle={item.subtitle}
+              kids={item.kids}
+              isActive={activeIndex === index}
+            />
+          ) : (
+            <Link
+              href={item.href}
+              key={`${item.label}${index}`}
+              className="px-5 py-2 font-russo  text-gray-800 hover:text-borange  dark:text-gray-400 "
+              target={item.external ? "_blank" : ""}
+              rel={item.external ? "noopener" : ""}
+            >
+              <span className="text-gray-800 hover:text-borange hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] dark:text-gray-400 dark:hover:text-borange"> {item.label}</span>
+              {item.badge && (
+                <span className="ml-2 rounded bg-black px-2 py-0.5 text-xs font-semibold 
+                              text-borange dark:bg-borange dark:text-blue-800
+                              hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)]">
+                  {item.badge}
+                </span>
+              )}
+            </Link>
+          )}
+        </div>
+      ))}
+      <ThemeSwitch />
+    </div>
                 </div>
-              </div>
               <Disclosure.Panel>
                 <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden">
                   {mobilemenu.map((item, index) => (
@@ -243,5 +345,54 @@ const DropdownMenu = ({ menu, items, mobile }) => {
         </>
       )}
     </Menu>
+  );
+};
+
+const NavMenu = ({ menu, items, title, subtitle, kids }) => {
+  return (
+    <div className="relative group z-[1000]">
+      <span className="px-5 py-2 font-russo text-gray-800 hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] hover:text-borange dark:hover:text-borange dark:text-gray-400 cursor-pointer">
+        {menu.label}
+      </span>
+      
+      <div className="absolute left-0 hidden w-64 pt-2 group-hover:flex ">
+        <div className="bg-white rounded shadow-md dark:bg-gray-800">
+          {title && (
+            <div className="px-4 py-2 font-russo text-gray-500 dark:text-gray-300 w-48">
+              {title}
+            </div>
+          )}
+          {items.map((subItem, index) => (
+            <Link
+              href={subItem.href}
+              key={`${subItem.label}${index}`}
+              className="block px-2 py-2 text-gray-800 hover:text-borange dark:hover:text-borange dark:text-gray-200 dark:hover:bg-gray-600"
+              target={subItem.external ? "_blank" : ""}
+              rel={subItem.external ? "noopener" : ""}
+            >
+              {subItem.label}
+            </Link>
+          ))}
+        </div>
+        {subtitle && (
+          <div className="bg-white rounded shadow-md dark:bg-gray-800 ml-4">
+            <div className="px-4 py-2 font-russo text-gray-500 dark:text-gray-300 w-64">
+              {subtitle}
+            </div>
+            {kids.map((subItem, index) => (
+              <Link
+                href={subItem.href}
+                key={`${subItem.label}${index}`}
+                className="block px-3 py-2 text-gray-800 hover:text-borange dark:hover:text-borange dark:text-gray-200 dark:hover:bg-gray-600 z-50"
+                target={subItem.external ? "_blank" : ""}
+                rel={subItem.external ? "noopener" : ""}
+              >
+                {subItem.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };

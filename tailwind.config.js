@@ -1,3 +1,4 @@
+const { Orbitron } = require("next/font/google");
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
@@ -11,12 +12,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: colors.neutral
+        gray: colors.neutral,
+        borange: " #f7931a ", 
+        bgray: " #4d4d4d ",
+        lred: " #DB5C84 ",
+        dred: " #4C0414 ",
+        tgreen: " #7eff7e",
+        tblue: " #1e90ff ",
+        eth: " #9da7da ",
+        deth: " #5c6ac0 ",
       },
       fontFamily: {
         // to change, update font in _document.js
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
         serif: ["var(--font-lora)", ...defaultTheme.fontFamily.serif],
+        orbib: ["var(--font-orbib)"],
+        russo: ["var(--font-russo)"],
+
         stock: [defaultTheme.fontFamily.sans]
       },
       aspectRatio: {
