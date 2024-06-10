@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ndk } from '@/app/layout' // Adjust the import according to your project structure
-import { nip19 } from 'nostr-tools';
+import { nip04, nip19 } from 'nostr-tools';
 import Link from 'next/link';
 
 // Define a type for the profile
@@ -29,6 +29,7 @@ interface Profile {
         if (window.nostr) {
           // Use the Nostr extension API to get keys
           const publicKey = await window.nostr.getPublicKey();
+
           const npubKey = nip19.npubEncode(publicKey); // Convert hex public key to npub format
   
           const profileData: Profile = {
