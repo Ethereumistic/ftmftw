@@ -3,11 +3,11 @@ import Container from "@/components/container";
 import Archive from "./archive";
 import Loading from "@/components/loading";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
-export default async function ArchivePage({ searchParams }) {
+export default async function ArchivePage() {
   return (
     <>
       <Container className="relative">
