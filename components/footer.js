@@ -6,7 +6,7 @@ import VercelLogo from "../public/img/vercel.svg";
 
 export default function Footer(props) {
   return (
-    <Container className="mt-10 border-t border-gray-100 dark:border-gray-800">
+    <Container className="mt-10 bg-slate-300 dark:bg-slate-950  dark:text-slate-800 dark:bg-[radial-gradient(#333333_1px,transparent_1px)] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
       <div className="text-center text-sm">
         Copyright © {new Date().getFullYear()} {props?.copyright}. All
         rights reserved.

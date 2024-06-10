@@ -3,23 +3,21 @@ import { Providers } from "./providers";
 import { cx } from "@/utils/all";
 import { Inter, Lora, Ubuntu } from "next/font/google";
 import localfont from "next/font/local";
+import NDK from "@nostr-dev-kit/ndk";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter"
 });
-
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora"
 });
-
 const ubu = Ubuntu({
   subsets: ["latin"],
   variable: "--font-ubu",
   weight: "400",
 });
-
 const orbib = localfont(
   {
     src: [
@@ -30,8 +28,7 @@ const orbib = localfont(
     ],
     variable: "--font-orbib"
   });
-
-  const orbir = localfont(
+const orbir = localfont(
     {
       src: [
         {
@@ -41,8 +38,7 @@ const orbib = localfont(
       ],
       variable: "--font-orbir"
     });
-
-  const russo = localfont(
+const russo = localfont(
     {
       src: [
         {
@@ -52,6 +48,19 @@ const orbib = localfont(
       ],
       variable: "--font-russo"
     });
+
+    const defaultRelays = ["wss://relay.damus.io", "wss://relay.primal.net"];
+
+    // create a new NDK instance
+    const ndk = new NDK({ explicitRelayUrls: defaultRelays });
+    
+    // connect to the relays
+    ndk
+      .connect()
+      .then(() => console.log("ndk connected"))
+      .catch((err) => console.error(err));
+    
+    export { ndk };
 
 export default function RootLayout({
   children
@@ -65,8 +74,9 @@ export default function RootLayout({
       className={cx(inter.variable, lora.variable, russo.variable, orbib.variable, orbir.variable, ubu.variable)}>
       <body className="antialiased ">
       {/* <div className="relative h-full w-full text-gray-800 dark:bg-slate-950 dark:text-gray-400"> */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-slate-300 dark:bg-slate-950  dark:text-slate-800 dark:bg-[radial-gradient(#333333_1px,transparent_1px)] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
-        <Providers>{children}</Providers>
+      <div className="absolute inset-0 -z-10 h-full w-full  bg-slate-300 dark:bg-slate-950  dark:text-slate-800 dark:bg-[radial-gradient(#333333_1px,transparent_1px)] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+        <Providers>
+          {children}</Providers>
         </div>
       </body>
     </html>

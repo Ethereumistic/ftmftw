@@ -11,6 +11,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { myLoader } from "@/utils/all";
 import ThemeSwitch from "./themeSwitch";
 import { useState } from "react";
+import AuthButton from "@/components/nostr/AuthButton"; // Adjust the import according to your project structure
 
 export default function Navbar(props) {
 
@@ -256,7 +257,9 @@ export default function Navbar(props) {
         </div>
       ))}
       <ThemeSwitch />
+      <AuthButton />
     </div>
+    
                 </div>
               <Disclosure.Panel>
                 <div className="order-2 -ml-4 mt-4 flex w-full flex-col items-center justify-start md:hidden">
