@@ -25,7 +25,7 @@ export default async function Post({ searchParams }) {
 
   return (
     <>
-      {posts && posts?.length === 0 && (
+      {/* {posts && posts?.length === 0 && (
         <div className="flex h-40 items-center justify-center">
           <span className="text-lg text-gray-500">
             End of the result!
@@ -42,7 +42,8 @@ export default async function Post({ searchParams }) {
         pageIndex={pageIndex}
         isFirstPage={isFirstPage}
         isLastPage={isLastPage}
-      />
+      /> */}
+      Archive
     </>
   );
 }
