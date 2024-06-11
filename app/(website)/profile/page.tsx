@@ -1,11 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import useProfile from 'nostr-tools'
 
 interface Profile {
   publicKey: string;
   displayName: string;
+  username: string;
 }
+
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -29,10 +32,10 @@ const Profile: React.FC = () => {
         <div>
           <p>Public Key: {profile.publicKey}</p>
           <p>Display Name: {profile.displayName}</p>
+          <p>Nostr Username: {profile.username}</p>
         </div>
       )}
     </div>
   );
 };
-
 export default Profile;

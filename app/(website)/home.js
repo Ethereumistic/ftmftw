@@ -2,17 +2,30 @@ import Link from "next/link";
 import Container from "@/components/container";
 import PostList from "@/components/postlist";
 import CardHb from "@/components/fe/CardHb";
+import Mainland from "@/components/mainland";
+import Image from "next/image";
 
 export default function Post({ posts }) {
   return (
     <>
     
       {posts && (
-        <Container>
-          <div className="flex mx-auto mb-8 w-11/12">
-          <h1 className="mb-3 mt-2  text-6xl font-orbib italic font-black tracking-tight dark:text-white lg:text-4xl lg:leading-snug font-outline-1 dark:font-outline-1b  px-8 py-2">
+        <Container className="">
+          <div className="flex mx-auto mb-8 ">
+
+          <Mainland />
+
+          {/* <Image
+            src="https://cdn.jsdelivr.net/gh/Ethereumistic/ftmftw-assets/logo/pill-v.png"
+            alt="FTMFTW"
+            width={500}
+            height={500}
+            className=""
+            /> */}
+
+          {/* <h1 className="mb-3 mt-2  text-6xl font-orbib italic font-black tracking-tight dark:text-white lg:text-4xl lg:leading-snug font-outline-1 dark:font-outline-1b  px-8 py-2">
           ADVANCING HYPER<span className="text-5xl text-borange font-outline-1b">₿</span>ITCOINIZATION
-          </h1>
+          </h1> */}
           </div>
 
           <CardHb />

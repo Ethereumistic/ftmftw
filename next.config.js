@@ -4,9 +4,20 @@ const nextConfig = {
   swcMinify: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    dangerouslyAllowSVG: true,
-    remotePatterns: [{ hostname: "cdn.sanity.io" }]
+dangerouslyAllowSVG: true,
+remotePatterns: [
+  {
+    protocol: 'https',
+    hostname: 'cdn.jsdelivr.net',
+    port: '',
   },
+  {
+    protocol: 'https',
+    hostname: 'cdn.sanity.io',
+    port: '',
+  }
+],
+},
   typescript: {
     // Set this to false if you want production builds to abort if there's type errors
     ignoreBuildErrors: process.env.VERCEL_ENV === "production"

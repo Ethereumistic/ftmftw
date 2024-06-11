@@ -104,15 +104,17 @@ export default function Navbar(props) {
   const mobilemenu = [...leftmenu, ...rightmenu];
 
   return (
-    <Container>
-      <nav>
+    <Container className="sticky top-0 z-50 w-[100%]">
+      <nav className="">
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="-translate-x-1 -translate-y-4 
-                              flex flex-wrap justify-between md:flex-nowrap md:gap-10 dark:bg-slate-700 bg-slate-400  dark:text-slate-800 
+            <div className="dark:bg-slate-700  bg-slate-400  dark:text-slate-800 
                               dark:bg-[radial-gradient(#4d4d4d_1px,transparent_1px)] 
-                              bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]  rounded-full h-20">
+                              bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] 
+                              rounded-full h-16 opacity-50
+                              translate-x-[8px] -translate-y-[15px]"></div>
+              <div className="-translate-y-[104px] flex flex-wrap justify-between md:flex-nowrap md:gap-10 ">
                 
                 {/* <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
                   {leftmenu.map((item, index) => (
@@ -240,11 +242,11 @@ export default function Navbar(props) {
             <Link
               href={item.href}
               key={`${item.label}${index}`}
-              className="px-5 py-2 font-russo  text-gray-800 hover:text-borange  dark:text-gray-400 "
+              className="px-5 py-2 font-russo  text-gray-800 hover:text-borange  dark:text-white "
               target={item.external ? "_blank" : ""}
               rel={item.external ? "noopener" : ""}
             >
-              <span className="text-gray-800 hover:text-borange hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] dark:text-gray-400 dark:hover:text-borange"> {item.label}</span>
+              <span className="text-gray-800 hover:text-borange hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] dark:text-white dark:hover:text-borange"> {item.label}</span>
               {item.badge && (
                 <span className="ml-2 rounded bg-black px-2 py-0.5 text-xs font-semibold 
                               text-borange dark:bg-borange dark:text-blue-800
@@ -256,8 +258,10 @@ export default function Navbar(props) {
           )}
         </div>
       ))}
+      <div className="flex ml-[500px]">
       <ThemeSwitch />
       <AuthButton />
+      </div>
     </div>
     
                 </div>
@@ -354,14 +358,14 @@ const DropdownMenu = ({ menu, items, mobile }) => {
 const NavMenu = ({ menu, items, title, subtitle, kids }) => {
   return (
     <div className="relative group z-[1000]">
-      <span className="px-5 py-2 font-russo text-gray-800 hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] hover:text-borange dark:hover:text-borange dark:text-gray-400 cursor-pointer">
+      <span className="px-5 py-2 font-russo text-gray-800 hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,2)] hover:text-borange dark:hover:text-borange dark:text-white cursor-pointer">
         {menu.label}
       </span>
       
       <div className="absolute left-0 hidden w-64 pt-2 group-hover:flex ">
         <div className="bg-white rounded shadow-md dark:bg-gray-800">
           {title && (
-            <div className="px-4 py-2 font-russo text-gray-500 dark:text-gray-300 w-48">
+            <div className="px-4 py-2 font-russo text-gray-500 dark:text-white w-48">
               {title}
             </div>
           )}

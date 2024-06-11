@@ -5,13 +5,16 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ndk } from '@/app/layout' // Adjust the import according to your project structure
 import { nip04, nip19 } from 'nostr-tools';
 import Link from 'next/link';
+import getProfileData from "@nostr-dev-kit/ndk"
 
 // Define a type for the profile
 interface Profile {
     publicKey: string;
     displayName: string;
+    username: string;
   }
   
+
   const AuthButton: React.FC = () => {
     const [profile, setProfile] = useState<Profile | null>(null);
     const router = useRouter();
@@ -30,17 +33,19 @@ interface Profile {
           // Use the Nostr extension API to get keys
           const publicKey = await window.nostr.getPublicKey();
 
+          
           const npubKey = nip19.npubEncode(publicKey); // Convert hex public key to npub format
   
           const profileData: Profile = {
             publicKey: npubKey,
             displayName: '',
+            username: 'initialUsername',
           };
           
           // Save profile data in state and localStorage
           setProfile(profileData);
-          localStorage.setItem('nostr-profile', JSON.stringify(profileData));
-  
+          localStorage.setItem('nostr-profile', JSON.stringify({ ...profileData }));
+
           console.log('Logged in with public key:', npubKey);
           router.push('/profile'); // Redirect to profile page
         } else {
